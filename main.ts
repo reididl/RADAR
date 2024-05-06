@@ -10,7 +10,7 @@ function RADAR165TO15 () {
         1
         )
         OLED12864_I2C.showNumber(
-        3,
+        0,
         0,
         sonar.ping(
         DigitalPin.P15,
@@ -20,9 +20,27 @@ function RADAR165TO15 () {
         1
         )
         OLED12864_I2C.showString(
-        8,
+        0,
         0,
         " cm",
+        1
+        )
+        OLED12864_I2C.showString(
+        20,
+        0,
+        "A:",
+        1
+        )
+        OLED12864_I2C.showNumber(
+        0,
+        0,
+        i,
+        1
+        )
+        OLED12864_I2C.showString(
+        0,
+        0,
+        "°",
         1
         )
         basic.pause(30)
@@ -40,7 +58,7 @@ function RADAR15TO165 () {
         1
         )
         OLED12864_I2C.showNumber(
-        3,
+        0,
         0,
         sonar.ping(
         DigitalPin.P15,
@@ -50,9 +68,27 @@ function RADAR15TO165 () {
         1
         )
         OLED12864_I2C.showString(
-        8,
+        0,
         0,
         " cm",
+        1
+        )
+        OLED12864_I2C.showString(
+        20,
+        0,
+        "A:",
+        1
+        )
+        OLED12864_I2C.showNumber(
+        0,
+        0,
+        CONSTANGLE + j,
+        1
+        )
+        OLED12864_I2C.showString(
+        0,
+        0,
+        "°",
         1
         )
         basic.pause(30)
@@ -76,6 +112,7 @@ basic.showLeds(`
     # . . . #
     # # # # #
     `)
+OLED.init(128, 64)
 OLED12864_I2C.init(60)
 OLED12864_I2C.zoom(false)
 OLED12864_I2C.on()
