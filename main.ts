@@ -1,6 +1,7 @@
 function RADAR165TO15 () {
     i = 165
     while (i > 15) {
+        BOUTONOFF = pins.digitalReadPin(DigitalPin.P2)
         robotbit.GeekServo5KG(robotbit.Servos.S1, i)
         OLED12864_I2C.showString(
         0,
@@ -24,6 +25,7 @@ function RADAR165TO15 () {
 }
 function RADAR15TO165 () {
     for (let j = 0; j <= 150; j++) {
+        BOUTONOFF = pins.digitalReadPin(DigitalPin.P2)
         robotbit.GeekServo5KG(robotbit.Servos.S1, CONSTANGLE + j)
         OLED12864_I2C.showString(
         0,
@@ -46,8 +48,8 @@ function RADAR15TO165 () {
 }
 let OFF = 0
 let ON = 0
-let BOUTONOFF = 0
 let BOUTONON = 0
+let BOUTONOFF = 0
 let i = 0
 let CONSTANGLE = 0
 CONSTANGLE = 15
