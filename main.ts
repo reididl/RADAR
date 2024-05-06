@@ -10,13 +10,19 @@ function RADAR165TO15 () {
         1
         )
         OLED12864_I2C.showNumber(
-        0,
         3,
+        0,
         sonar.ping(
         DigitalPin.P15,
         DigitalPin.P14,
         PingUnit.Centimeters
         ),
+        1
+        )
+        OLED12864_I2C.showString(
+        8,
+        0,
+        " cm",
         1
         )
         basic.pause(30)
@@ -34,13 +40,19 @@ function RADAR15TO165 () {
         1
         )
         OLED12864_I2C.showNumber(
-        0,
         3,
+        0,
         sonar.ping(
         DigitalPin.P15,
         DigitalPin.P14,
         PingUnit.Centimeters
         ),
+        1
+        )
+        OLED12864_I2C.showString(
+        8,
+        0,
+        " cm",
         1
         )
         basic.pause(30)
