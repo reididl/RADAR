@@ -1,5 +1,5 @@
 {
-    "name": "Radard-v12",
+    "name": "pxt-RADAR-v1.0.1",
     "description": "",
     "dependencies": {
         "core": "*",
