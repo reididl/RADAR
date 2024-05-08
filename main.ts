@@ -1,109 +1,91 @@
 function RADAR165TO15 () {
-    i = 165
-    while (i > 15) {
+    angle = endAngle
+    while (angle >= startAngle) {
+        moveRadar(angle)
         pins.digitalWritePin(DigitalPin.P12, 1)
         pins.analogWritePin(AnalogPin.P0, 400)
-        robotbit.GeekServo5KG(robotbit.Servos.S1, i)
-        OLED12864_I2C.clear()
-        OLED12864_I2C.showString(
-        0,
-        0,
-        "D:",
-        1
-        )
-        distance = sonar.ping(
-        DigitalPin.P15,
-        DigitalPin.P14,
-        PingUnit.Centimeters
-        )
-        control.waitMicros(2)
-        OLED12864_I2C.showNumber(
-        3,
-        0,
-        distance,
-        1
-        )
-        OLED12864_I2C.showString(
-        8,
-        0,
-        "cm",
-        1
-        )
-        OLED12864_I2C.showString(
-        0,
-        1,
-        "A:",
-        1
-        )
-        OLED12864_I2C.showNumber(
-        3,
-        1,
-        i,
-        1
-        )
-        basic.pause(30)
-        pins.digitalWritePin(DigitalPin.P12, 0)
-        pins.analogWritePin(AnalogPin.P0, 0)
-        basic.pause(30)
-        i = i - 1
+        temps = input.runningTime()
+        totaltemps = totaltemps + temps
+        angle = angle - angleStep
+        if (totaltemps - temps >= 100) {
+            pins.digitalWritePin(DigitalPin.P12, 0)
+            pins.analogWritePin(AnalogPin.P0, 0)
+            totaltemps = 0
+        }
     }
 }
+function moveRadar (valAngle: number) {
+    robotbit.GeekServo5KG(robotbit.Servos.S1, valAngle)
+    basic.pause(30)
+    distance = sonar.ping(
+    DigitalPin.P15,
+    DigitalPin.P14,
+    PingUnit.Centimeters
+    )
+    control.waitMicros(4)
+    basic.showNumber(distance)
+    ecranDistance = distance / 400 * 63
+    x1 = centerX + Math.round(radius * Math.cos(pi * (valAngle / 180)))
+    y1 = centerY + Math.round(radius * Math.sin(pi * (valAngle / 180)))
+    x2 = centerX + Math.round(ecranDistance * Math.cos(pi * (valAngle / 180)))
+    y2 = centerY + Math.round(ecranDistance * Math.sin(pi * (valAngle / 180)))
+    OLED12864_I2C.line(
+    x1,
+    y1,
+    x2,
+    y2,
+    1
+    )
+}
 function RADAR15TO165 () {
-    for (let j = 0; j <= 150; j++) {
+    angle = startAngle
+    while (angle <= endAngle) {
+        moveRadar(angle)
         pins.digitalWritePin(DigitalPin.P12, 1)
-        pins.analogWritePin(AnalogPin.P0, 600)
-        robotbit.GeekServo5KG(robotbit.Servos.S1, CONSTANGLE + j)
-        OLED12864_I2C.clear()
-        OLED12864_I2C.showString(
-        0,
-        0,
-        "D:",
-        1
-        )
-        distance = sonar.ping(
-        DigitalPin.P15,
-        DigitalPin.P14,
-        PingUnit.Centimeters
-        )
-        control.waitMicros(2)
-        OLED12864_I2C.showNumber(
-        3,
-        0,
-        distance,
-        1
-        )
-        OLED12864_I2C.showString(
-        8,
-        0,
-        "cm",
-        1
-        )
-        OLED12864_I2C.showString(
-        0,
-        1,
-        "A:",
-        1
-        )
-        OLED12864_I2C.showNumber(
-        3,
-        1,
-        CONSTANGLE + j,
-        1
-        )
-        basic.pause(100)
-        pins.digitalWritePin(DigitalPin.P12, 0)
-        pins.analogWritePin(AnalogPin.P0, 0)
-        basic.pause(100)
+        pins.analogWritePin(AnalogPin.P0, 400)
+        temps = input.runningTime()
+        totaltemps = totaltemps + temps
+        angle = angle + angleStep
+        if (totaltemps - temps >= 100) {
+            pins.digitalWritePin(DigitalPin.P12, 0)
+            pins.analogWritePin(AnalogPin.P0, 0)
+            totaltemps = 0
+        }
     }
 }
 let OFF = 0
 let ON = 0
 let BOUTONOFF = 0
 let BOUTONON = 0
+let y2 = 0
+let x2 = 0
+let y1 = 0
+let x1 = 0
+let ecranDistance = 0
+let angle = 0
 let distance = 0
-let i = 0
-let CONSTANGLE = 0
-CONSTANGLE = 15
+let totaltemps = 0
+let temps = 0
+let angleStep = 0
+let endAngle = 0
+let startAngle = 0
+let radius = 0
+let centerY = 0
+let centerX = 0
+let pi = 0
+pi = 3.141592653589793
+let direction = 1
+centerX = 63
+centerY = 0
+radius = 20
+startAngle = 15
+endAngle = 165
+angleStep = 5
+let CONSTANGLE = 15
+let Constdelay = 100
+temps = input.runningTime()
+totaltemps = 0
+distance = 0
 pins.digitalWritePin(DigitalPin.P8, 0)
 pins.digitalWritePin(DigitalPin.P12, 0)
 pins.digitalWritePin(DigitalPin.P13, 1)
@@ -116,17 +98,10 @@ basic.showLeds(`
     # # # # #
     `)
 OLED12864_I2C.init(60)
-OLED12864_I2C.zoom(true)
 OLED12864_I2C.on()
+OLED12864_I2C.zoom(false)
 OLED12864_I2C.clear()
-OLED12864_I2C.showString(
-0,
-0,
-"WAITING MODE, push ON!",
-1
-)
 basic.pause(2000)
-OLED12864_I2C.clear()
 basic.forever(function () {
     BOUTONON = pins.digitalReadPin(DigitalPin.P1)
     BOUTONOFF = pins.digitalReadPin(DigitalPin.P2)
@@ -142,7 +117,9 @@ basic.forever(function () {
         pins.digitalWritePin(DigitalPin.P8, 1)
         pins.digitalWritePin(DigitalPin.P12, 0)
         pins.digitalWritePin(DigitalPin.P13, 0)
+        OLED12864_I2C.clear()
         RADAR15TO165()
+        OLED12864_I2C.clear()
         RADAR165TO15()
     }
     if (OFF == 1) {

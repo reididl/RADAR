@@ -7,8 +7,8 @@
         "microphone": "*",
         "robotbit": "github:kittenbot/pxt-robotbit#v0.4.6",
         "pxt-sonar": "github:microsoft/pxt-sonar#v0.0.5",
-        "OLED12864_I2C": "github:makecode-extensions/oled12864_i2c#v1.5.0",
-        "SSD1306_OLED": "github:tinkertanker/pxt-oled-ssd1306#v2.0.13"
+        "SSD1306_OLED": "github:tinkertanker/pxt-oled-ssd1306#v2.0.13",
+        "OLED12864_I2C": "github:CalliTGS3/OLED12864_I2C#d0027703a62a26cedd2c786fb9707d021fd5c731"
     },
     "files": [
         "main.blocks",
