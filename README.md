@@ -1,5 +1,5 @@
 
-> Ouvrir cette page à [https://reididl.github.io/radar/](https://reididl.github.io/radar/)
+> Ouvrir cette page à [https://reididl.github.io/pxt-RADAR/](https://reididl.github.io/pxt-RADAR/
 
 ## Petit RADAR, avec OLED, Servo, HC-SR04, LED's et boutons
 
