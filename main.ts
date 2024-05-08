@@ -27,7 +27,7 @@ function moveRadar (valAngle: number) {
     ecranDistance = distance * (63 / 128)
     x1 = centerX
     y1 = centerY
-    x2 = centerX + Math.round(ecranDistance * Math.cos(pi * (valAngle / 180)))
+    x2 = centerX - Math.round(ecranDistance * Math.cos(pi * (valAngle / 180)))
     y2 = centerY + Math.round(ecranDistance * Math.sin(pi * (valAngle / 180)))
     OLED12864_I2C.line(
     x1,
@@ -124,6 +124,7 @@ basic.forever(function () {
         pins.digitalWritePin(DigitalPin.P8, 0)
         pins.digitalWritePin(DigitalPin.P12, 0)
         pins.digitalWritePin(DigitalPin.P13, 1)
+        OLED12864_I2C.clear()
         music.stopAllSounds()
     }
 })
