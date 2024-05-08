@@ -1,9 +1,11 @@
 
-> Ouvrir cette page à [https://reididl.github.io/pxt-RADAR/](https://reididl.github.io/pxt-RADAR/
+> Ouvrir cette page à [https://reididl.github.io/pxt-RADAR/](https://reididl.github.io/pxt-RADAR/)
 
 ## Petit RADAR, avec OLED, Servo, HC-SR04, LED's et boutons
+[Schéma](https://github.com/reididl/pxt-RADAR/blob/master/RADAR-BRANCHEMENT2.png)
 
-https://github.com/reididl/pxt-RADAR/blob/master/RADAR-BRANCHEMENT2.png
+![](RADAR-BRANCHEMENT2.png)
+
 
 ## Utiliser comme extension
 
