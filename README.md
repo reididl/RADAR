@@ -1,7 +1,7 @@
 
 > Ouvrir cette page à [https://reididl.github.io/radar/](https://reididl.github.io/radar/)
 
-## En cours de développement !!
+## Petit RADAR, avec OLED, Servo, HC-SR04, LED's et boutons
 
 ## Utiliser comme extension
 
