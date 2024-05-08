@@ -3,6 +3,8 @@
 
 ## Petit RADAR, avec OLED, Servo, HC-SR04, LED's et boutons
 
+https://github.com/reididl/pxt-RADAR/blob/master/RADAR-BRANCHEMENT2.png
+
 ## Utiliser comme extension
 
 Ce dépôt peut être ajouté en tant qu'**extension** dans MakeCode.
