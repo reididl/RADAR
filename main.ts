@@ -24,11 +24,11 @@ function moveRadar (valAngle: number) {
     )
     control.waitMicros(4)
     basic.showNumber(distance)
-    ecranDistance = distance / 400 * 63
+    ecranDistance = distance / 400 * 63 - radius
     x1 = centerX + Math.round(radius * Math.cos(pi * (valAngle / 180)))
     y1 = centerY + Math.round(radius * Math.sin(pi * (valAngle / 180)))
-    x2 = centerX + Math.round(ecranDistance * Math.cos(pi * (valAngle / 180)))
-    y2 = centerY + Math.round(ecranDistance * Math.sin(pi * (valAngle / 180)))
+    x2 = centerX + Math.round((radius + ecranDistance) * Math.cos(pi * (valAngle / 180)))
+    y2 = centerY + Math.round((radius + ecranDistance) * Math.sin(pi * (valAngle / 180)))
     OLED12864_I2C.line(
     x1,
     y1,
@@ -77,7 +77,7 @@ pi = 3.141592653589793
 let direction = 1
 centerX = 63
 centerY = 0
-radius = 20
+radius = 10
 startAngle = 15
 endAngle = 165
 angleStep = 5
